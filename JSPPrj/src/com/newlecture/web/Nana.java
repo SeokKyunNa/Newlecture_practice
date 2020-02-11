@@ -27,7 +27,14 @@ public class Nana extends HttpServlet{
 		
 		PrintWriter out = response.getWriter();
 		
-		int cnt = Integer.parseInt(request.getParameter("cnt"));	// getParameter는 무조건 문자열로 입력되므로 상황에 맞게 캐스팅 필요
+		String cnt_ = request.getParameter("cnt");
+		
+		int cnt = 10;
+		if(cnt_ != null && !cnt_.equals("")) {
+			cnt = Integer.parseInt(cnt_);
+		}
+		
+//		int cnt = Integer.parseInt(request.getParameter("cnt"));	// getParameter는 무조건 문자열로 입력되므로 상황에 맞게 캐스팅 필요
 		
 		for(int i = 0; i < cnt; i++) {
 			out.println((i + 1) + " : 안녕 Servlet!!<br />");
