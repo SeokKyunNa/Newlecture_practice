@@ -22,6 +22,7 @@
   version="4.0"
   metadata-complete="false">
 
+<!-- URL 매핑 -->
 <!--   <servlet>
     <servlet-name>na</servlet-name>
     <servlet-class>com.newlecture.web.Nana</servlet-class>
@@ -31,6 +32,16 @@
     <servlet-name>na</servlet-name>
     <url-pattern>/hello</url-pattern>
   </servlet-mapping> -->
+  
+ <!-- Servlet Filter -->
+<!--  	<filter>
+ 		<filter-name>charcterEncodingFilter</filter-name>
+ 		<filter-class>com.newlecture.web.filter.CharacterEncodingFilter</filter-class>
+ 	</filter>
+ 	<filter-mapping>
+ 		<filter-name>charcterEncodingFilter</filter-name>
+ 		<url-pattern>/*</url-pattern>
+ 	</filter-mapping> -->
 
   <display-name>Welcome to Tomcat</display-name>
   <description>
