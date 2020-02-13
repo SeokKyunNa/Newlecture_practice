@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/calc2")
 public class Calc2 extends HttpServlet {
@@ -17,6 +18,7 @@ public class Calc2 extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		ServletContext application = request.getServletContext();
+		HttpSession session = request.getSession();
 		
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html); charset=UTF-8");
@@ -30,9 +32,11 @@ public class Calc2 extends HttpServlet {
 		
 		// 계산
 		if(op_.equals("=")) {
-			int x = (Integer)application.getAttribute("value");
+			//int x = (Integer)application.getAttribute("value");
+			int x = (Integer)session.getAttribute("value");
 			int y = v;
-			String op = (String)application.getAttribute("op");
+			//String op = (String)application.getAttribute("op");
+			String op = (String)session.getAttribute("op");
 			int result = 0;
 			
 			if(op.equals("+")) {
@@ -44,8 +48,10 @@ public class Calc2 extends HttpServlet {
 			response.getWriter().printf("result is %d\n", result);
 		// 값을 저장
 		} else {
-			application.setAttribute("value", v);
-			application.setAttribute("op", op_);
+			//application.setAttribute("value", v);
+			//application.setAttribute("op", op_);
+			session.setAttribute("value", v);
+			session.setAttribute("op", op_);
 		}
 		
 	}
