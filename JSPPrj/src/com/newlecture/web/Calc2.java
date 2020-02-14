@@ -23,7 +23,7 @@ public class Calc2 extends HttpServlet {
 		Cookie[] cookies = request.getCookies();
 		
 		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html); charset=UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
 		
 		String v_ = request.getParameter("v");
 		String op = request.getParameter("operator");

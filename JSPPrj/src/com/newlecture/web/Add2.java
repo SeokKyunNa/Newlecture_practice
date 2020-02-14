@@ -16,7 +16,7 @@ public class Add2 extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html); charset=UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
 
 		String[] num_ = request.getParameterValues("num");
 		
