@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%    
-int x = 3;
-int y = 4;
+	int x = 3;
+	int y = 4;
 %>
 <!DOCTYPE html>
 <html>
