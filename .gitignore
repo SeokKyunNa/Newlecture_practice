@@ -3,3 +3,6 @@
 ######################
 
 .metadata
+Servers/
+jdbc.properties
+.class
