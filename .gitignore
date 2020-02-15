@@ -3,6 +3,6 @@
 ######################
 
 .metadata
-Servers/
+Servers/*
 jdbc.properties
 .class
