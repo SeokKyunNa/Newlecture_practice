@@ -8,5 +8,9 @@
 </head>
 <body>
 	<%=request.getAttribute("result") %>입니다.
+	<!-- EL 표기 연습 -->
+	${result} 입니다.
+	${names[0] }
+	${notice.title }
 </body>
 </html>
