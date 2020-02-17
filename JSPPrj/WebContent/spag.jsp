@@ -18,6 +18,10 @@
 	${result}<br >
 	${param.n }<br >
 	${header.accept }<br >
-	${pageContext.request.method }
+	${pageContext.request.method }<br >
+	${param.n ge 3 }<br >
+	${empty param.n}<br >	<!-- (param.n == null || param.n == "") 같은 의미-->
+	${empty param.n ? "값이 비어있습니다." : param.n }<br >
+	${param.n / 2 }<br >
 </body>
 </html>
