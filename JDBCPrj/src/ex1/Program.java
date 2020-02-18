@@ -12,7 +12,7 @@ public class Program {
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		
 		String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
-		String sql = "SELECT * FROM NOTICE";
+		String sql = "SELECT * FROM NOTICE WHERE HIT > 10";
 		
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		Connection con = DriverManager.getConnection(url, "newlec", "tjrrbs89!");
@@ -27,7 +27,8 @@ public class Program {
 			String content = rs.getString("CONTENT");
 			int hit = rs.getInt("HIT");
 			
-			System.out.printf("ID : %d\nTITLE : %s\nWRITER_ID : %s\nREGDATE : %s\nCONTENT : %s\nHIT : %d\n\n", id, title, writerid, regDate, content, hit);
+			System.out.printf("ID : %d\tTITLE : %s\tWRITER_ID : %s\tREGDATE : %s\tCONTENT : %s\tHIT : %d\t\n", id, title, writerid, regDate, content, hit);
+
 		}
 		
 		rs.close();
