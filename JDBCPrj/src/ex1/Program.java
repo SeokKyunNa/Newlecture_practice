@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 
 public class Program {
 	
@@ -18,9 +19,15 @@ public class Program {
 		Statement st = con.createStatement();
 		ResultSet rs = st.executeQuery(sql);
 		
-		if(rs.next()) {		// BOF에서 시작이니까 next한 후부터 데이터를 가져옴
+		while(rs.next()) {
+			int id = rs.getInt("ID");
 			String title = rs.getString("TITLE");
-			System.out.printf("NAME : %s\n", title);
+			String writerid = rs.getString("WRITER_ID");
+			Date regDate = rs.getDate("REGDATE");
+			String content = rs.getString("CONTENT");
+			int hit = rs.getInt("HIT");
+			
+			System.out.printf("ID : %d\nTITLE : %s\nWRITER_ID : %s\nREGDATE : %s\nCONTENT : %s\nHIT : %d\n\n", id, title, writerid, regDate, content, hit);
 		}
 		
 		rs.close();
