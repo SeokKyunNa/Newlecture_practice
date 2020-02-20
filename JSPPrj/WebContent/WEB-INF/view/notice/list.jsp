@@ -20,7 +20,7 @@
             align-items: center;
             
             background: url("../../images/customer/visual.png") no-repeat center;
-        }
+       }
     </style>
 </head>
 
@@ -180,13 +180,13 @@
 						for(Notice n : list){
 							pageContext.setAttribute("n", n);
 						%> --%>
-						<c:forEach var="n" items="${list }">
+						<c:forEach var="n" items="${list}">
 						<tr>
-							<td>${n.id }</td>
-							<td class="title indent text-align-left"><a href="detail?id=${n.id }">${n.title }</a></td>
-							<td>${n.writerId }</td>
-							<td><fmt:formatDate pattern="yyyy.MM.dd" value="${n.regdate }"/></td>
-							<td><fmt:formatNumber pattern="#,###" value="${n.hit }"/></td>
+							<td>${n.id}</td>
+							<td class="title indent text-align-left"><a href="detail?id=${n.id}">${n.title}</a></td>
+							<td>${n.writerId}</td>
+							<td><fmt:formatDate pattern="yyyy.MM.dd" value="${n.regdate}"/></td>
+							<td><fmt:formatNumber type="number" pattern="#,###" value="${n.hit}"/></td>
 						</tr>
 						</c:forEach>
 						<%-- <%} %> --%>
@@ -202,29 +202,29 @@
 
 			<div class="margin-top align-center pager">	
 		
-	<c:set var="page" value="${(param.p == null)?1:param.p }"/>		<!-- 현재 페이지를 넘겨주기 위한 변수 -->
-	<c:set var="startNum" value="${page-(page-1)%5 }"/>		<!-- 현재 페이지의 번호의 시작 페이지 번호를 구하는 변수 -->
+	<c:set var="page" value="${(param.p == null)?1:param.p}"/>		<!-- 현재 페이지를 넘겨주기 위한 변수 -->
+	<c:set var="startNum" value="${page-(page-1)%5}"/>		<!-- 현재 페이지의 번호의 시작 페이지 번호를 구하는 변수 -->
 	<c:set var="lastNum" value="28"/>
 	
 	<div>
-		<c:if test="${startNum>1 }">
-			<a href="?p=${startNum-1 }&t=&q=" class="btn btn-next" >이전</a>
+		<c:if test="${startNum>1}">
+			<a href="?p=${startNum-1}&t=&q=" class="btn btn-next" >이전</a>
 		</c:if>
-		<c:if test="${startNum<=1 }">
+		<c:if test="${startNum<=1}">
 			<span class="btn btn-prev" onclick="alert('이전 페이지가 없습니다.');">이전</span>
 		</c:if>
 	</div>
 	
 	<ul class="-list- center">
 		<c:forEach var="i" begin="0" end="4">
-		<li><a class="-text- orange bold" href="?p=${startNum+i }&t=&q=" >${startNum+i }</a></li>
+		<li><a class="-text- orange bold" href="?p=${startNum+i}&t=&q=" >${startNum+i}</a></li>
 		</c:forEach>
 	</ul>
 	<div>
-		<c:if test="${startNum+5<lastNum }">
-			<a href="?p=${startNum+5 }&t=&q=" class="btn btn-next" >다음</a>
+		<c:if test="${startNum+5<lastNum}">
+			<a href="?p=${startNum+5}&t=&q=" class="btn btn-next" >다음</a>
 		</c:if>
-		<c:if test="${startNum+5>=lastNum }">
+		<c:if test="${startNum+5>=lastNum}">
 			<span class="btn btn-next" onclick="alert('다음 페이지가 없습니다.');">다음</span>
 		</c:if>
 	</div>
