@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-    
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html>
 
@@ -132,7 +133,6 @@
 			<!-- --------------------------- main --------------------------------------- -->
 
 
-
 		<main class="main">
 			<h2 class="main title">공지사항</h2>
 			
@@ -195,16 +195,19 @@
 				</table>
 			</div>
 			
+			<c:set var="page" value="${(param.p == null)?1:param.p}"/>		<!-- 현재 페이지를 넘겨주기 위한 변수 -->
+			<c:set var="startNum" value="${page-(page-1)%5}"/>		<!-- 현재 페이지의 번호의 시작 페이지 번호를 구하는 변수 -->
+			<c:set var="lastNum" value="${fn:substringBefore(Math.ceil(count/10), '.')}"/>
+			
 			<div class="indexer margin-top align-right">
 				<h3 class="hidden">현재 페이지</h3>
-				<div><span class="text-orange text-strong">${(empty param.p)?1:param.p}</span> / 1 pages</div>
+				<div><span class="text-orange text-strong">${(empty param.p)?1:param.p}</span> / ${lastNum} pages</div>
 			</div>
 
 			<div class="margin-top align-center pager">	
-	<!---------------------- pager ---------------------->
-	<c:set var="page" value="${(param.p == null)?1:param.p}"/>		<!-- 현재 페이지를 넘겨주기 위한 변수 -->
-	<c:set var="startNum" value="${page-(page-1)%5}"/>		<!-- 현재 페이지의 번호의 시작 페이지 번호를 구하는 변수 -->
-	<c:set var="lastNum" value="28"/>
+			
+	<!---------------------- <pager> ---------------------->
+	
 	
 	<div>
 		<c:if test="${startNum>1}">
@@ -217,14 +220,16 @@
 	
 	<ul class="-list- center">
 		<c:forEach var="i" begin="0" end="4">
+		<c:if test="${(startNum+i)<=lastNum}">
 		<li><a class="-text- ${(page==(startNum+i))?'orange':''} bold" href="?p=${startNum+i}&f=${param.f}&q=${param.q}" >${startNum+i}</a></li>
+		</c:if>
 		</c:forEach>
 	</ul>
 	<div>
-		<c:if test="${startNum+5<lastNum}">
+		<c:if test="${startNum+4<lastNum}">
 			<a href="?p=${startNum+5}&t=&q=" class="btn btn-next" >다음</a>
 		</c:if>
-		<c:if test="${startNum+5>=lastNum}">
+		<c:if test="${startNum+4>=lastNum}">
 			<span class="btn btn-next" onclick="alert('다음 페이지가 없습니다.');">다음</span>
 		</c:if>
 	</div>
