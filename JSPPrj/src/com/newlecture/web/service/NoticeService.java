@@ -86,31 +86,188 @@ public class NoticeService {
 	}
 	
 	public int getNoticeCount(String field, String query) {
-		String sql = "SELECT COUNT(*) FROM (" + 
-				"SELECT ROWNUM NUM, N.* FROM (" + 
-				"SELECT * FROM NOTICE ORDER BY REGDATE DESC) N" + 
-				") " + 
-				"WHERE NUM BETWEEN ? AND ?";
-		return 0;
+		
+		int count = 0;
+		
+		String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
+		String sql = "SELECT COUNT(ID) COUNT FROM (" + 
+				"SELECT ROWNUM NUM, N.* " + 
+				"FROM (SELECT * FROM NOTICE WHERE " + field + " LIKE ? ORDER BY REGDATE DESC) N" + 
+				")";
+		
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, "newlec", "tjrrbs89!");
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, "%"+query+"%");
+			
+			ResultSet rs = st.executeQuery();
+			
+			count = rs.getInt("count");
+			
+			rs.close();
+			st.close();
+			con.close();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return count;
 	}
 	
 	public Notice getNotice(int id) {
+		
+		Notice notice = null;
+		
+		String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
 		String sql = "SELECT * ROM NOTICE WHERE ID=?";
+		
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, "newlec", "tjrrbs89!");
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setInt(1, id);
+			
+			ResultSet rs = st.executeQuery();
+			
+			if(rs.next()){ 
+				//int id = rs.getInt("ID");
+				String title = rs.getString("TITLE");
+				String writerId = rs.getString("WRITER_ID"); 
+				Date regdate = rs.getDate("REGDATE");
+				int hit = rs.getInt("HIT");
+				String files = rs.getString("files");
+				String content = rs.getString("content");
+			
+				notice = new Notice(
+						id,
+						title,
+						writerId,
+						regdate,
+						hit,
+						files,
+						content
+				);
+			}
+			
+			rs.close();
+			st.close();
+			con.close();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return null;
 	}
 	
 	public Notice getNextNotice(int id) {
+		
+		Notice notice = null;
+		
+		String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
 		String sql = "SELECT * FROM NOTICE " + 
 				"WHERE ID = (" + 
 				"SELECT ID FROM NOTICE " + 
 				"WHERE REGDATE > (SELECT REGDATE FROM NOTICE WHERE ID = ?) AND ROWNUM = 1)";
-		return null;
+		
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, "newlec", "tjrrbs89!");
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setInt(1, id);
+			
+			ResultSet rs = st.executeQuery();
+			
+			if(rs.next()){ 
+				//int id = rs.getInt("ID");
+				String title = rs.getString("TITLE");
+				String writerId = rs.getString("WRITER_ID"); 
+				Date regdate = rs.getDate("REGDATE");
+				int hit = rs.getInt("HIT");
+				String files = rs.getString("files");
+				String content = rs.getString("content");
+			
+				notice = new Notice(
+						id,
+						title,
+						writerId,
+						regdate,
+						hit,
+						files,
+						content
+				);
+			}
+			
+			rs.close();
+			st.close();
+			con.close();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return notice;
 	}
 	
 	public Notice getPrevNotice(int id) {
+		
+		Notice notice = null;
+		
+		String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
 		String sql = "SELECT ID FROM " + 
 				"(SELECT * FROM NOTICE ORDER BY REGDATE DESC) " + 
 				"WHERE REGDATE < (SELECT REGDATE FROM NOTICE WHERE ID = ?) AND ROWNUM = 1";
-		return null;
+		
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, "newlec", "tjrrbs89!");
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setInt(1, id);
+			
+			ResultSet rs = st.executeQuery();
+			
+			if(rs.next()){ 
+				//int id = rs.getInt("ID");
+				String title = rs.getString("TITLE");
+				String writerId = rs.getString("WRITER_ID"); 
+				Date regdate = rs.getDate("REGDATE");
+				int hit = rs.getInt("HIT");
+				String files = rs.getString("files");
+				String content = rs.getString("content");
+			
+				notice = new Notice(
+						id,
+						title,
+						writerId,
+						regdate,
+						hit,
+						files,
+						content
+				);
+			}
+			
+			rs.close();
+			st.close();
+			con.close();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return notice;
 	}
 }
