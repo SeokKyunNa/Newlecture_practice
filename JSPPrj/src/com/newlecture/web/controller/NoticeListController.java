@@ -29,12 +29,12 @@ public class NoticeListController extends HttpServlet {
 		}
 		
 		String query = "";
-		if(query_ != null && !query_.contentEquals("")) {
+		if(query_ != null && !query_.equals("")) {
 			query = query_;
 		}
 		
 		int page = 1;
-		if(page_ != null) {
+		if(page_ != null && !page_.equals("")) {
 			page = Integer.parseInt(page_);
 		}
 		
