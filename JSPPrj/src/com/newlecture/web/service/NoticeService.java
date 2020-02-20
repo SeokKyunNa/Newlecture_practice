@@ -21,7 +21,7 @@ public class NoticeService {
 				"SELECT ROWNUM NUM, N.* FROM (" + 
 				"SELECT * FROM NOTICE ORDER BY REGDATE DESC) N" + 
 				") " + 
-				"WHERE NUM BETWEEN 6 AND 10";
+				"WHERE NUM BETWEEN ? AND ?";
 		return null;
 	}
 	
@@ -35,7 +35,7 @@ public class NoticeService {
 				"SELECT ROWNUM NUM, N.* FROM (" + 
 				"SELECT * FROM NOTICE ORDER BY REGDATE DESC) N" + 
 				") " + 
-				"WHERE NUM BETWEEN 6 AND 10";
+				"WHERE NUM BETWEEN ? AND ?";
 		return 0;
 	}
 	
@@ -48,12 +48,14 @@ public class NoticeService {
 		String sql = "SELECT * FROM NOTICE " + 
 				"WHERE ID = (" + 
 				"SELECT ID FROM NOTICE " + 
-				"WHERE REGDATE > (SELECT REGDATE FROM NOTICE WHERE ID = 3) AND ROWNUM = 1)";
+				"WHERE REGDATE > (SELECT REGDATE FROM NOTICE WHERE ID = ?) AND ROWNUM = 1)";
 		return null;
 	}
 	
 	public Notice getPrevNotice(int id) {
-		
+		String sql = "SELECT ID FROM " + 
+				"(SELECT * FROM NOTICE ORDER BY REGDATE DESC) " + 
+				"WHERE REGDATE < (SELECT REGDATE FROM NOTICE WHERE ID = ?) AND ROWNUM = 1";
 		return null;
 	}
 }
