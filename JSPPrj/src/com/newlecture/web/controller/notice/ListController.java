@@ -1,4 +1,4 @@
-package com.newlecture.web.controller;
+package com.newlecture.web.controller.notice;
 
 import java.io.IOException;
 import java.util.List;
@@ -13,7 +13,7 @@ import com.newlecture.web.entity.NoticeView;
 import com.newlecture.web.service.NoticeService;
 
 @WebServlet("/notice/list")
-public class NoticeListController extends HttpServlet {
+public class ListController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
