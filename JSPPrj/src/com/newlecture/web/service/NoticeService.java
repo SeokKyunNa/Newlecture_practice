@@ -125,7 +125,7 @@ public class NoticeService {
 		Notice notice = null;
 		
 		String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
-		String sql = "SELECT * ROM NOTICE WHERE ID=?";
+		String sql = "SELECT * FROM NOTICE WHERE ID=?";
 		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -166,7 +166,7 @@ public class NoticeService {
 			e.printStackTrace();
 		}
 		
-		return null;
+		return notice;
 	}
 	
 	public Notice getNextNotice(int id) {
