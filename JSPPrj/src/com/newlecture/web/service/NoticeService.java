@@ -14,7 +14,43 @@ import com.newlecture.web.entity.NoticeView;
 
 public class NoticeService {
 
-	public List<NoticeView> getNoticeList(){
+	/* 공지사항 일괄 삭제 (관리자모드) */
+	public int removeNoticlAll(int[] ids){
+		
+		return 0;
+	}
+	
+	/* 공지사항 일괄 공개 (관리자모드) */
+	public int pubNoticeAll(int []ids){
+		
+		return 0;
+	}
+	
+	/* 공지사항 입력 (관리자모드) */
+	public int insertNotice(Notice notice){
+		
+		return 0;
+	}
+	
+	/* 공지사항 삭제 (관리자모드) */
+	public int deleteNotice(int id){
+		
+		return 0;
+	}
+	
+	/* 공지사항 수정 (관리자모드) */
+	public int updateNotice(Notice notice){
+		
+		return 0;
+	}
+	
+	/* 메인화면에서 최신 공지사항 리스트 */
+	public List<Notice> getNoticeNewestList(){
+		
+		return null;
+	}
+	
+	public List<NoticeView> getNoticeViewList(){
 		
 		return getNoticeList("title", "", 1);
 	}
