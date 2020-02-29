@@ -14,6 +14,21 @@ import com.newlecture.web.service.NoticeService;
 
 @WebServlet("/admin/notice/list")
 public class ListController extends HttpServlet {
+	
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String[] openIds = request.getParameterValues("open-id");
+		String[] delIds = request.getParameterValues("del-id");
+		
+		for(String openId : openIds) {
+			System.out.printf("open id : %s\n", openId);
+		}
+		
+		for(String delId : delIds) {
+			System.out.printf("del id : %s\n", delId);
+		}
+	}
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

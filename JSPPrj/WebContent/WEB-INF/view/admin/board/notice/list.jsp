@@ -157,50 +157,52 @@
 					</form>
 				</div>
 
-				<div class="notice margin-top">
-					<h3 class="hidden">공지사항 목록</h3>
-					<table class="table">
-						<thead>
-							<tr>
-								<th class="w60">번호</th>
-								<th class="expand">제목</th>
-								<th class="w100">작성자</th>
-								<th class="w100">작성일</th>
-								<th class="w60">조회수</th>
-								<th class="w40">공개</th>
-								<th class="w40">삭제</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="n" items="${list}">
-							<tr>
-								<td>${n.id}</td>
-								<td class="title indent text-align-left"><a href="detail?id=${n.id}">${n.title}</a> [${n.cmtCount}]</td>
-								<td>${n.writerId}</td>
-								<td><fmt:formatDate pattern="yyyy.MM.dd" value="${n.regdate}"/></td>
-								<td><fmt:formatNumber type="number" pattern="#,###" value="${n.hit}"/></td>
-								<td><input type="checkbox" name="open"></td>
-								<td><input type="checkbox" name="del"></td>
-							</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-				</div>
-
-				<c:set var="page" value="${(param.p == null)?1:param.p}"/>		<!-- 현재 페이지를 넘겨주기 위한 변수 -->
-				<c:set var="startNum" value="${page-(page-1)%5}"/>		<!-- 현재 페이지의 번호의 시작 페이지 번호를 구하는 변수 -->
-				<c:set var="lastNum" value="${fn:substringBefore(Math.ceil(count/10), '.')}"/>
-				
-				<div class="indexer margin-top align-right">
-					<h3 class="hidden">현재 페이지</h3>
-					<div><span class="text-orange text-strong">${(empty param.p)?1:param.p}</span> / ${lastNum} pages</div>
-				</div>
-
-				<div class="text-align-right margin-top">
-					<input type="submit" class="btn-text btn-default" value="일괄공개">
-					<input type="submit" class="btn-text btn-default" value="일괄삭제">
-					<a class="btn-text btn-default" href="reg.html">글쓰기</a>				
-				</div>
+				<form action="list" method="post">
+					<div class="notice margin-top">
+						<h3 class="hidden">공지사항 목록</h3>
+						<table class="table">
+							<thead>
+								<tr>
+									<th class="w60">번호</th>
+									<th class="expand">제목</th>
+									<th class="w100">작성자</th>
+									<th class="w100">작성일</th>
+									<th class="w60">조회수</th>
+									<th class="w40">공개</th>
+									<th class="w40">삭제</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="n" items="${list}">
+								<tr>
+									<td>${n.id}</td>
+									<td class="title indent text-align-left"><a href="detail?id=${n.id}">${n.title}</a> [${n.cmtCount}]</td>
+									<td>${n.writerId}</td>
+									<td><fmt:formatDate pattern="yyyy.MM.dd" value="${n.regdate}"/></td>
+									<td><fmt:formatNumber type="number" pattern="#,###" value="${n.hit}"/></td>
+									<td><input type="checkbox" name="open-id" value="${n.id}"></td>
+									<td><input type="checkbox" name="del-id" value="${n.id}"></td>
+								</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</div>
+	
+					<c:set var="page" value="${(param.p == null)?1:param.p}"/>		<!-- 현재 페이지를 넘겨주기 위한 변수 -->
+					<c:set var="startNum" value="${page-(page-1)%5}"/>		<!-- 현재 페이지의 번호의 시작 페이지 번호를 구하는 변수 -->
+					<c:set var="lastNum" value="${fn:substringBefore(Math.ceil(count/10), '.')}"/>
+					
+					<div class="indexer margin-top align-right">
+						<h3 class="hidden">현재 페이지</h3>
+						<div><span class="text-orange text-strong">${(empty param.p)?1:param.p}</span> / ${lastNum} pages</div>
+					</div>
+	
+					<div class="text-align-right margin-top">
+						<input type="submit" class="btn-text btn-default" value="일괄공개">
+						<input type="submit" class="btn-text btn-default" value="일괄삭제">
+						<a class="btn-text btn-default" href="reg.html">글쓰기</a>				
+					</div>
+				</form>
 
 				<div class="margin-top align-center pager">	
 					<div>
