@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.newlecture.web.entity.Notice;
 import com.newlecture.web.service.NoticeService;
 
+@MultipartConfig(
+	fileSizeThreshold=1024*1024,
+	maxFileSize=1024*1024*50,
+	maxRequestSize=1024*1024*50*5
+)
 @WebServlet("/admin/board/notice/reg")
 public class RegController extends HttpServlet {
 
