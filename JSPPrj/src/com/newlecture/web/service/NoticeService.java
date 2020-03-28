@@ -30,7 +30,36 @@ public class NoticeService {
 	/* 공지사항 입력 (관리자모드) */
 	public int insertNotice(Notice notice){
 		
-		return 0;
+		int result = 0;
+		
+		String params = "";
+		
+		String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
+		String sql = "INSERT INTO NOTICE(TITLE, CONTENT, WRITER_ID, PUB)"
+					+ "VALUES(?, ?, ?, ?)"; 
+		
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, "newlec", "tjrrbs89!");
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, notice.getTitle());
+			st.setString(2, notice.getContent());
+			st.setString(3, notice.getWriterId());
+			st.setBoolean(4, notice.getPub());
+			
+			result = st.executeUpdate();
+			
+			st.close();
+			con.close();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 	
 	/* 공지사항 삭제 (관리자모드) */

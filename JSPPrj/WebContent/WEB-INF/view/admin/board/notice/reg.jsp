@@ -161,14 +161,18 @@
                                 </tr>
                                 <tr>
                                     <th>첨부파일</th>
-                                    <td colspan="3" class="text-align-left text-indent"><input type="file"
-                                            name="file" /> </td>
+                                    <td colspan="3" class="text-align-left text-indent">
+                                    	<input type="file" name="file" />
+                                    </td>
                                 </tr>
                                 <tr class="content">
                                     <td colspan="4"><textarea class="content" name="content"></textarea></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="4" class="text-align-right"><input class="vertical-align" type="checkbox" id="open" name="open" value="true"><label for="open" class="margin-left">바로공개</label> </td>
+                                    <td colspan="4" class="text-align-right">
+                                    	<input class="vertical-align" type="checkbox" id="open" name="open" value="true">
+                                    	<label for="open" class="margin-left">바로공개</label>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
