@@ -1,7 +1,6 @@
 package com.newlecture.web.controller.admin.notice;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -9,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import com.newlecture.web.entity.Notice;
 import com.newlecture.web.service.NoticeService;
@@ -32,10 +32,16 @@ public class RegController extends HttpServlet {
 
 		String title = request.getParameter("title");
 		
-		System.out.println("title : ");
-		System.out.println(title);
 		String content = request.getParameter("content");
 		String isOpen = request.getParameter("open");
+		
+		Part filePart = request.getPart("file");
+		filePart.getInputStream();
+		
+		String realPath = request.getServletContext().getRealPath("/upload/newlec");
+		
+		System.out.println(realPath);
+		
 		boolean pub = false;
 		if(isOpen != null) {
 			pub = true;
