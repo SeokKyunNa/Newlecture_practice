@@ -179,7 +179,7 @@
 									<c:if test="${fn:endsWith(fileName, '.zip')}">	<!-- 끝나는 문자열 체크하는 if함수 -->
 										<c:set var="style" value="font-weight: bolld; color: red;" />
 									</c:if>
-									<a href="${fileName}" style="${style}">${fn:toUpperCase(fileName)}</a>	<!-- 대문자로 변경하는 함수 -->
+									<a download href="/upload/${fileName}" style="${style}">${fn:toUpperCase(fileName)}</a>	<!-- 대문자로 변경하는 함수 -->
 									<c:if test="${not st.last}">
 									/
 									</c:if>

@@ -51,7 +51,7 @@ public class RegController extends HttpServlet {
 			builder.append(",");
 			InputStream fis = filePart.getInputStream();
 			
-			String realPath = request.getServletContext().getRealPath("/upload/newlec");
+			String realPath = request.getServletContext().getRealPath("/upload");
 			System.out.println(realPath);
 			
 			String filePath = realPath + File.separator + fileName;
