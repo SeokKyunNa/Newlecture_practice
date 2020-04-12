@@ -97,7 +97,7 @@ public class NoticeService {
 		String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
 		String sql = "SELECT * FROM (" + 
 				"SELECT ROWNUM NUM, N.* " + 
-				"FROM (SELECT * FROM NOTICE_VIEW WHERE " + field + " LIKE ? ORDER BY REGDATE DESC) N" + 
+				"FROM (SELECT * FROM NOTICE_VIEW WHERE " + field + " LIKE ? ORDER BY ID DESC, REGDATE DESC) N" + 
 				") " + 
 				"WHERE NUM BETWEEN ? AND ?";
 		
