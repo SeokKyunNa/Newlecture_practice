@@ -1,6 +1,7 @@
 package com.newlecture.web.controller.admin.notice;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class ListController extends HttpServlet {
 		String[] delIds = request.getParameterValues("del-id");
 		String cmd = request.getParameter("cmd");
 		String ids_ = request.getParameter("ids");
-		String[] ids = ids_.split(" ");
+		String[] ids = ids_.trim().split(" ");
 		
 		NoticeService service = new NoticeService();
 		
@@ -35,14 +36,21 @@ public class ListController extends HttpServlet {
 			
 			List<String> oids = Arrays.asList(openIds);
 			
+			List<String> cids = new ArrayList(Arrays.asList(ids));
+			cids.removeAll(oids);
+			
+			System.out.println(Arrays.asList(ids));
+			System.out.println(oids);
+			System.out.println(cids);
+			
 			for(int i = 0; i < ids.length; i++) {
 				// 1. 현재 id가 open 된 상태인가
 				if(oids.contains(ids[i])) {
 					
 				}
 			}
-			service.pubNoticeList(openIds);	// update notice set pub=1 where id in (...);
-			sevice.closeNoticeList(clsIds);
+			//service.pubNoticeList(openIds);	// update notice set pub=1 where id in (...);
+			//service.closeNoticeList(clsIds);
 			
 			break;
 		case "일괄삭제" :
@@ -51,7 +59,7 @@ public class ListController extends HttpServlet {
 				ids1[i] = Integer.parseInt(delIds[i]);
 			}
 			
-			int result = service.deleteNoticeAll(ids);
+			int result = service.deleteNoticeAll(ids1);
 			/*
 			 * for(String delId : delIds) { System.out.printf("del id : %s\n", delId); }
 			 */
