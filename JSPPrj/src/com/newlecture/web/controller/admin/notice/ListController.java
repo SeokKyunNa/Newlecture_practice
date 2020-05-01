@@ -49,8 +49,9 @@ public class ListController extends HttpServlet {
 					
 				}
 			}
-			//service.pubNoticeList(openIds);	// update notice set pub=1 where id in (...);
-			//service.closeNoticeList(clsIds);
+			
+			// Transaction 처리
+			service.pubNoticeAll(oids, cids);	// update notice set pub=1 where id in (...);
 			
 			break;
 		case "일괄삭제" :

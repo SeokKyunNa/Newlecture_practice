@@ -22,8 +22,18 @@ public class NoticeService {
 	}
 	
 	/* 공지사항 일괄 공개 (관리자모드) */
-	public int pubNoticeAll(int []ids){
+	public int pubNoticeAll(int[] oids, int[] cids){
+		// 배열로 받은 값을 CSV로 변환
+		return pubNoticeAll();
+	}
+	public int pubNoticeAll(List<String> oids, List<String> cids){
+		// 리스트로 받은 값을 CSV로 변환
+		return pubNoticeAll();
+	}
+	// Comma Seperated Values, 콤마로 구분된 값들
+	public int pubNoticeAll(String oidsCSV, String cidsCSV){
 		
+		String sql1 = "UPDATE NOTICE SET PUB=1 WHERE ID IN (?);";
 		return 0;
 	}
 	
