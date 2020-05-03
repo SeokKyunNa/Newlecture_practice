@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -23,12 +24,25 @@ public class NoticeService {
 	
 	/* 공지사항 일괄 공개 (관리자모드) */
 	public int pubNoticeAll(int[] oids, int[] cids){
+		
 		// 배열로 받은 값을 CSV로 변환
-		return pubNoticeAll();
+		List<String> oidsList = new ArrayList<>();
+		for(int i = 0; i < oids.length; i++) {
+			oidsList.add(String.valueOf(oids[i]));
+		}
+		
+		List<String> cidsList = new ArrayList<>();
+		for(int i = 0; i < cids.length; i++) {
+			cidsList.add(String.valueOf(cids[i]));
+		}
+		
+		return pubNoticeAll(oidsList, cidsList);
 	}
 	public int pubNoticeAll(List<String> oids, List<String> cids){
 		// 리스트로 받은 값을 CSV로 변환
-		return pubNoticeAll();
+		String oidsCSV = String.join(",", oids);
+		String cidsCSV = String.join(",", cids);
+		return pubNoticeAll(oidsCSV, cidsCSV);
 	}
 	// Comma Seperated Values, 콤마로 구분된 값들
 	public int pubNoticeAll(String oidsCSV, String cidsCSV){
